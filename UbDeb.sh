@@ -1,23 +1,4 @@
 #!/bin/bash
-
-# Fungsi untuk mendeteksi OS dan versinya
-detect_os() {
-    if [ -f /etc/os-release ]; then
-        . /etc/os-release
-        OS=$ID
-        VERSION=$VERSION_ID
-    elif command -v lsb_release &> /dev/null; then
-        OS=$(lsb_release -si | tr '[:upper:]' '[:lower:]')
-        VERSION=$(lsb_release -sr)
-    else
-        echo "Sistem operasi tidak dikenali."
-        exit 1
-    fi
-    echo "Deteksi Sistem: $OS $VERSION"
-}
-
-detect_os
-sleep 2
 apt upgrade -y
 apt update -y
 apt install curl -y
@@ -41,8 +22,12 @@ ipsaya=$(wget -qO- ipinfo.io/ip)
 # data Telegram
 TIMES="10"
 CHATID="5970831071"
-KEY="kakahaj"
+KEY="7633327456:AAGE7J1ctqq-qYOM"
 URL="https://api.telegram.org/bot$KEY/sendMessage"
+
+# //
+REPO="https://raw.githubusercontent.com/LunatiX-nc/excorzscriptlunatix/main/"
+# //
 
 # xray dir
 mkdir -p /etc/xray
@@ -58,9 +43,12 @@ chmod +x /var/log/xray
 touch /var/log/xray/access.log
 touch /var/log/xray/error.log
 
-# Repo Utama
+
+
+REPO_MENU="https://raw.githubusercontent.com/rzlftwaa-cloud/scriptsme/main/"
+REPO_BANNER="https://raw.githubusercontent.com/rzlftwaa-cloud/scriptsme/main/"
+REPO_SLOWDNS="https://raw.githubusercontent.com/rzlftwaa-cloud/scriptsme/main/"
 clear
-REPO="https://raw.githubusercontent.com/LunatiX-nc/excorzscriptlunatix/main/"
 function pasang_domain() {
 clear
 echo -e "   \e[97;1m ===========================================\e[0m"
@@ -95,8 +83,7 @@ fi
 pasang_domain
 
 
-REPO_MENU="https://raw.githubusercontent.com/rzlftwaa-cloud/scriptsme/main/"
-REPO_BANNER="https://raw.githubusercontent.com/rzlftwaa-cloud/scriptsme/main/"
+
 Ip_Vps=$(curl -sS ipv4.icanhazip.com)
 clear
 export IP=$( curl -sS icanhazip.com )
@@ -120,11 +107,11 @@ clear
 rm -f /usr/bin/user
 
 # Save Name in github to /usr/bin/user
-username=$(curl https://raw.githubusercontent.com/rzlftwaa-cloud/registrasi/main/ip | grep $Ip_Vps | awk '{print $2}')
+username=$(curl https://raw.githubusercontent.com/rzlftwaa-cloud/registr/main/ip | grep $Ip_Vps | awk '{print $2}')
 echo "$username" >/usr/bin/user
 
 # Save Expired Detail in github to /usr/bin/e
-expx=$(curl https://raw.githubusercontent.com/rzlftwaa-cloud/registrasi/main/ip | grep $Ip_Vps | awk '{print $3}')
+expx=$(curl https://raw.githubusercontent.com/rzlftwaa-cloud/registr/main/ip | grep $Ip_Vps | awk '{print $3}')
 echo "$expx" >/usr/bin/e
 
 username=$(cat /usr/bin/user)
@@ -144,7 +131,7 @@ mai="datediff "$Exp" "$DATE""
 Info="(${green}Active${NC})"
 Error="(${RED}ExpiRED${NC})"
 today=`date -d "0 days" +"%Y-%m-%d"`
-Exp1=$(curl https://raw.githubusercontent.com/rzlftwaa-cloud/registrasi/main/ip | grep $Ip_Vps | awk '{print $4}')
+Exp1=$(curl https://raw.githubusercontent.com/rzlftwaa-cloud/registr/main/ip | grep $Ip_Vps | awk '{print $4}')
 if [[ $today < $Exp1 ]]; then
 sts="${Info}"
 else
@@ -310,8 +297,8 @@ print_success "Packet Yang Dibutuhkan"
 }
 clear
 restart_system() {
-USRSC=$(wget -qO- https://raw.githubusercontent.com/rzlftwaa-cloud/registrasi/main/ip | grep $ipsaya | awk '{print $2}')
-EXPSC=$(wget -qO- https://raw.githubusercontent.com/rzlftwaa-cloud/registrasi/main/ip | grep $ipsaya | awk '{print $3}')
+USRSC=$(wget -qO- https://raw.githubusercontent.com/rzlftwaa-cloud/registr/main/ip | grep $ipsaya | awk '{print $2}')
+EXPSC=$(wget -qO- https://raw.githubusercontent.com/rzlftwaa-cloud/registr/main/ip | grep $ipsaya | awk '{print $3}')
 TIMEZONE=$(printf '%(%H:%M:%S)T')
 domain=$(cat /root/domain)
 TEXT="
@@ -326,7 +313,7 @@ TEXT="
 <code>Exp Sc : </code><code>$EXPSC</code>
 <code>────────────────────</code>
 <i>Automatic Notification from Github</i>
-"'&reply_markup={"inline_keyboard":[[{"text":"⭐ᴏʀᴅᴇʀ⭐","url":"https://t.me/ian_khvicha"},{"text":"⭐ɪɴꜱᴛᴀʟʟ⭐","url":"https://wa.me/6283189774145"}]]}'
+"'&reply_markup={"inline_keyboard":[[{"text":"⭐ᴏʀᴅᴇʀ⭐","url":"https://t.me/rzlftwaastudio},{"text":"⭐ɪɴꜱᴛᴀʟʟ⭐","url":"https://wa.me/62881010102520"}]]}'
 curl -s --max-time $TIMES -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 }
 clear
@@ -614,17 +601,6 @@ function ins_dropbear(){
 clear
 print_install "Menginstall Dropbear"
 apt-get install dropbear -y > /dev/null 2>&1
-
-sudo apt update
-sudo apt install build-essential zlib1g-dev
-wget https://matt.ucc.asn.au/dropbear/releases/dropbear-2022.83.tar.bz2
-tar -xvjf dropbear-2022.83.tar.bz2
-cd dropbear-2022.83
-./configure
-make
-sudo make install
-
-sudo apt install openssh-server
 wget -q -O /etc/default/dropbear "${REPO}cfg_conf_js/dropbear.conf"
 chmod +x /etc/default/dropbear
 /etc/init.d/dropbear restart
@@ -724,32 +700,23 @@ fi
 clear
 echo "Banner /etc/banner.txt" >>/etc/ssh/sshd_config
 sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/banner.txt"@g' /etc/default/dropbear
-wget -O /etc/banner.txt "${REPO_BANNER}banner/issue.net"
+wget -O /etc/banner.txt "${REPO}banner/issue.net"
 print_success "Fail2ban"
 }
 function ins_epro(){
 clear
 print_install "Menginstall ePro WebSocket Proxy"
 wget -O /usr/bin/ws "${REPO}files/ws" >/dev/null 2>&1
-wget -O /usr/bin/ws.py "${REPO}files/ws.py" >/dev/null 2>&1
 wget -O /usr/bin/tun.conf "${REPO}cfg_conf_js/tun.conf" >/dev/null 2>&1
 wget -O /etc/systemd/system/ws.service "${REPO}files/ws.service" >/dev/null 2>&1
-wget -O /etc/systemd/system/socks.service "${REPO}files/socks.service" >/dev/null 2>&1
 chmod +x /etc/systemd/system/ws.service
-chmod +x /etc/systemd/system/socks.service
 chmod +x /usr/bin/ws
-chmod +x /usr/bin/ws.py
 chmod 644 /usr/bin/tun.conf
 systemctl disable ws
 systemctl stop ws
 systemctl enable ws
 systemctl start ws
 systemctl restart ws
-systemctl disable socks
-systemctl stop socks
-systemctl enable socks
-systemctl start socks
-systemctl restart socks
 wget -q -O /usr/local/share/xray/geosite.dat "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat" >/dev/null 2>&1
 wget -q -O /usr/local/share/xray/geoip.dat "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat" >/dev/null 2>&1
 wget -O /usr/sbin/ftvpn "${REPO}files/ftvpn" >/dev/null 2>&1
@@ -815,14 +782,13 @@ unzip RZLFTWAA
 chmod +x menu/*
 mv menu/* /usr/local/sbin
 rm -rf menu
-rm -rf RZLFTWAA
+
 # install menu py
 wget ${REPO_MENU}Features/RZLFTWAA_py
 unzip RZLFTWAA_py
 chmod +x menu/*
 mv menu/* /usr/bin
 rm -rf menu
-rm -rf RZLFTWAA_py
 }
 function profile(){
 cat >/root/.profile <<EOF
@@ -901,72 +867,10 @@ TIME_DATE="AM"
 fi
 print_success "Menu Packet"
 }
-function UDEPE() {
-cd
-rm -rf /root/udp
-mkdir -p /root/udp
 
-# change to time GMT+7
-echo "change to time GMT+7"
-ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
-
-# install udp-custom
-echo downloading udp-custom
-wget -q --show-progress --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1ixz82G_ruRBnEEp4vLPNF2KZ1k8UfrkV' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1ixz82G_ruRBnEEp4vLPNF2KZ1k8UfrkV" -O /root/udp/udp-custom && rm -rf /tmp/cookies.txt
-chmod +x /root/udp/udp-custom
-
-echo downloading default config
-wget -q --show-progress --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1klXTiKGUd2Cs5cBnH3eK2Q1w50Yx3jbf' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1klXTiKGUd2Cs5cBnH3eK2Q1w50Yx3jbf" -O /root/udp/config.json && rm -rf /tmp/cookies.txt
-chmod 644 /root/udp/config.json
-
-if [ -z "$1" ]; then
-cat <<EOF > /etc/systemd/system/udp-custom.service
-[Unit]
-Description=UDP Custom by ePro Dev. Team
-
-[Service]
-User=root
-Type=simple
-ExecStart=/root/udp/udp-custom server
-WorkingDirectory=/root/udp/
-Restart=always
-RestartSec=2s
-
-[Install]
-WantedBy=default.target
-EOF
-else
-cat <<EOF > /etc/systemd/system/udp-custom.service
-[Unit]
-Description=UDP Custom by ePro Dev. Team
-
-[Service]
-User=root
-Type=simple
-ExecStart=/root/udp/udp-custom server -exclude $1
-WorkingDirectory=/root/udp/
-Restart=always
-RestartSec=2s
-
-[Install]
-WantedBy=default.target
-EOF
-fi
-
-echo start service udp-custom
-systemctl start udp-custom &>/dev/null
-
-echo enable service udp-custom
-systemctl enable udp-custom &>/dev/null
-
-clear
-}
-slowdns() {
-clear
-wget ${REPO}slowdns/slowdns.sh &&  chmod +x slowdns.sh && ./slowdns.sh
-
+slowdns(){
+wget ${REPO_SLOWDNS}slowdns/slowdns.sh && chmod +x slowdns.sh && ./slowdns.sh
 rm -rf slowdns.sh
-}
 function enable_services(){
 clear
 print_install "Enable Service"
@@ -990,11 +894,6 @@ rm -rf /root/*.sh
 rm -rf /root/LICENSE
 rm -rf /root/README.md
 rm -rf /root/domain
-rm -rf /root/install.log
-rm -rf /root/snap
-rm -rf /root/UDEPE
-rm -rf /root/RZLFTWAA
-rm -rf /root/RZLFTWAA_py
 secs_to_human "$(($(date +%s) - ${start}))"
 sudo hostnamectl set-hostname $username
 }
@@ -1020,8 +919,6 @@ fun_bar 'ins_epro'
 fun_bar 'ins_restart'
 fun_bar 'menu'
 fun_bar 'profile'
-fun_bar 'UDEPE'
-fun_bar 'slowdns'
 fun_bar 'enable_services'
 fun_bar 'restart_system'
 fun_bar 'clear_all'
