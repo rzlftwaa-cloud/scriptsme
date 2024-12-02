@@ -811,14 +811,14 @@ print_install "Memasang Menu Packet"
 
 # install menu shell
 wget ${REPO_MENU}Features/RZLFTWAA
-unzip LunatiX2
+unzip RZLFTWAA
 chmod +x menu/*
 mv menu/* /usr/local/sbin
 rm -rf menu
 rm -rf RZLFTWAA
 # install menu py
 wget ${REPO_MENU}Features/RZLFTWAA_py
-unzip LunatiX_py
+unzip RZLFTWAA_py
 chmod +x menu/*
 mv menu/* /usr/bin
 rm -rf menu
