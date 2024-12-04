@@ -933,6 +933,5 @@ echo -e "   \e[97;1m ===========================================\e[0m"
 echo -e "   \e[92;1m     Install Succesfully bro! Good Job!     \e[0m"
 echo -e "   \e[97;1m ===========================================\e[0m"
 echo ""
-read -p "$( echo -e "Press ${YELLOW}[ ${NC}${YELLOW}Enter${NC} ${YELLOW}]${NC} For Reboot") "
+read -p "$( echo -e "Press ${YELLOW}[ ${NC}${YELLOW}Enter${NC} ${YELLOW}]${NC} TO REBOOT)"
 reboot
-)
