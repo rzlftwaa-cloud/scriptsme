@@ -777,8 +777,8 @@ clear
 print_install "Memasang Menu Packet"
 
 # install menu shell
-wget ${REPO_MENU}Features/RZLFTWAA
-unzip RZLFTWAA
+wget ${REPO_MENU}Features/RZLFTWAA.zip
+unzip RZLFTWAA.zip
 chmod +x menu/*
 mv menu/* /usr/local/sbin
 rm -rf menu
@@ -886,7 +886,7 @@ systemctl restart haproxy
 print_success "Enable Service"
 clear
 }
-clear_all() {
+clear_all(){
 history -c
 rm -rf /root/menu
 rm -rf /root/*.zip
@@ -933,6 +933,5 @@ echo -e "   \e[97;1m ===========================================\e[0m"
 echo -e "   \e[92;1m     Install Succesfully bro! Good Job!     \e[0m"
 echo -e "   \e[97;1m ===========================================\e[0m"
 echo ""
-read -p "$( echo -e "Press ${YELLOW}[ ${NC}${YELLOW}Enter${NC} ${YELLOW}]${NC} TO REBOOT") "
+read -p "$( echo -e "Press ${YELLOW}[ ${NC}${YELLOW}Enter${NC} ${YELLOW}]${NC} For Reboot") "
 reboot
-}
