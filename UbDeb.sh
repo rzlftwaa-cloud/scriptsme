@@ -871,10 +871,10 @@ print_success "Menu Packet"
 slowdns(){
 wget ${REPO_SLOWDNS}slowdns/slowdns.sh && chmod +x slowdns.sh && ./slowdns.sh
 rm -rf slowdns.sh
-function enable_services()
+function enable_services(){
 clear
-}
 print_install "Enable Service"
+}
 systemctl daemon-reload
 systemctl start netfilter-persistent
 systemctl enable --now rc-local
