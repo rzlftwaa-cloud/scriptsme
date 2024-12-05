@@ -871,7 +871,7 @@ print_success "Menu Packet"
 slowdns(){
 wget ${REPO_SLOWDNS}slowdns/slowdns.sh && chmod +x slowdns.sh && ./slowdns.sh
 rm -rf slowdns.sh
-function enable_services(){
+function enable_services()
 clear
 print_install "Enable Service"
 systemctl daemon-reload
@@ -933,5 +933,5 @@ echo -e "   \e[97;1m ===========================================\e[0m"
 echo -e "   \e[92;1m     Install Succesfully bro! Good Job!     \e[0m"
 echo -e "   \e[97;1m ===========================================\e[0m"
 echo ""
-read -p "$( echo -e "Press ${YELLOW}[ ${NC}${YELLOW}Enter${NC} ${YELLOW}]${NC} TO REBOOT)"
+read -p "$( echo -e "Press ${YELLOW}[ ${NC}${YELLOW}Enter${NC} ${YELLOW}]${NC} TO REBOOT")"
 reboot
